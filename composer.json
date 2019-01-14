@@ -21,7 +21,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Store\\": "src/"
+      "Store\\": "src/",
+      "Store\\File\\Sync\\": "src/file/sync/"
     }
   },
   "minimum-stability": "dev"
