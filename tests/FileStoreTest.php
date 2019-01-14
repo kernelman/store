@@ -12,7 +12,7 @@
 use Store\File\Sync\FileStore;
 
 /**
- * Class MemoryTableTest
+ * Class FileStoreTest
  */
 class FileStoreTest extends \PHPUnit\Framework\TestCase
 {
