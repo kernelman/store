@@ -12,6 +12,7 @@ namespace Store\File\Sync;
 use Exceptions\AlreadyExistsException;
 use Exceptions\InvalidArgumentException;
 use Exceptions\NonEmptyException;
+use Exceptions\NotFoundException;
 use Exceptions\UnExecutableException;
 use Exceptions\UnReadableException;
 use Exceptions\UnWritableException;
@@ -158,6 +159,33 @@ class FileStore {
         }
 
         return false;
+    }
+
+    /**
+     * 删除文件
+     *
+     * @param $file
+     * @return bool
+     * @throws NotFoundException
+     * @throws UnExecutableException
+     * @throws UnReadableException
+     * @throws UnWritableException
+     */
+    public static function deleteFile($file) {
+        self::$files = $file;
+        $currentDir = dirname(self::$files);
+
+        $checkDirReadable       = self::checkDirReadable($currentDir);
+        $checkDirWritable       = self::checkDirWritable($currentDir);
+        $checkDirExecutable     = self::checkDirExecutable($currentDir);
+        $checkFileReadable      = self::checkFileReadable(self::$files);
+        $checkFileWritable      = self::checkFileWritable(self::$files);
+
+        if($checkDirReadable && $checkDirExecutable && $checkDirWritable && $checkFileReadable && $checkFileWritable) {
+            return unlink(self::$files);
+        }
+
+        throw new NotFoundException(self::$files);
     }
 
     /**
