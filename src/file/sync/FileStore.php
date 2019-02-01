@@ -35,7 +35,7 @@ class FileStore {
      */
     private static function check() {
 
-        if(!is_string(self::$content) || !is_int(self::$content) || self::$content === null) {
+        if(!is_string(self::$content) && !is_int(self::$content) || self::$content === null) {
             return false;
         }
 
