@@ -172,8 +172,8 @@ class FileStore {
      * @throws UnWritableException
      */
     public static function deleteFile($file) {
-        self::$files = $file;
-        $currentDir = dirname(self::$files);
+        self::$files    = $file;
+        $currentDir     = dirname(self::$files);
 
         $checkDirReadable       = self::checkDirReadable($currentDir);
         $checkDirWritable       = self::checkDirWritable($currentDir);
